@@ -1,6 +1,6 @@
 from models.bakery_product import BakeryProduct
 
-class RotiManis(BakeryProduck):
+class RotiManis(BakeryProduct):
     def __init__(self):
         super().__init__("Roti Manis Coklat", 20)
 

@@ -2,7 +2,7 @@ from models.bakery_product import BakeryProduct
 
 class Croissant(BakeryProduct):
     def __init__(self):
-        super().__init__("Crpissant", 12)
+        super().__init__("Croissant", 12)
 
         self.resep = {
             "Tepung Terigu Protein Tinggi" : "500 gr",

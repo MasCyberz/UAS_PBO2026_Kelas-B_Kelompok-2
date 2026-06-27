@@ -5,4 +5,4 @@ class Bahan:
         self.satuan = satuan
 
     def __str__(self):
-        return f"{self.nama} ({self.jumlah} {self.})"
+        return f"{self.nama} ({self.jumlah} {self.satuan})"

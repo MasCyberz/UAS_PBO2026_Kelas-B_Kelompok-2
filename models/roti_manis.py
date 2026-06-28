@@ -1,16 +1,30 @@
 from models.bakery_product import BakeryProduct
 
-class RotiManis(BakeryProduct):
-    def __init__(self):
-        super().__init__("Roti Manis Coklat", 20)
-
-        self.resep = {
-            "Tepung Terigu" : "500 gr",
-            "Gula Pasir" : "80 gr",
-            "Ragi Instan" : "8 gr",
-            "Susu Bubuk" : "25 gr",
-            "Telur" : "1 butir" ,
-            "Margarin" : "50 gr",
-            "Air" : "250 ml" ,
-            "Coklat Meses" : "150 gr"
-        }
+from interfaces.pengadonan import Pengadonan
+from interfaces.pengembangan import Pengembangan
+from interfaces.pemanggangan import Pemanggangan
+        
+class RotiManis(
+    BakeryProduct,
+    Pengadonan,
+    Pengembangan,
+    Pemanggangan,
+):
+    def pengadonan(self):
+        print("=" * 50)
+        print(f"Pengadonan {self.nama}")
+        print("Mencampur seluruh bahan...")
+        print("Pengadonan selesai.")
+    
+    def pengembangan(self):
+        print("=" * 50)
+        print(f"Pengembangan {self.nama}")
+        print("Melakukan pengembangan...")
+        print("Pengembangan selesai.")
+        
+    def pemanggangan(self):
+        print("=" * 50)
+        print(f"Pemanggangan {self.nama}")
+        print("Melakukan pemanggangan...")
+        print("Pemanggangan selesai.")
+        

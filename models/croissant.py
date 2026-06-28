@@ -1,15 +1,29 @@
 from models.bakery_product import BakeryProduct
 
-class Croissant(BakeryProduct):
-    def __init__(self):
-        super().__init__("Croissant", 12)
+from interfaces.pengadonan import Pengadonan
+from interfaces.pengembangan import Pengembangan
+from interfaces.pemanggangan import Pemanggangan
 
-        self.resep = {
-            "Tepung Terigu Protein Tinggi" : "500 gr",
-            "Garam" : "10 gr",
-            "Gula Pasir" : "60 gr",
-            "Ragi Instan" : "10 gr",
-            "Susu Cair Dingin" : "300ml",
-            "Mentega Dingin" : "250 gr",
-            "Telur (olesan)" : "1 butir"
-        }
+class Croissant(
+    BakeryProduct,
+    Pengadonan,
+    Pengembangan,
+    Pemanggangan
+):
+    def pengadonan(self):
+        print("=" * 50)
+        print(f"Pengadonan {self.nama}")
+        print("Mencampur seluruh bahan...")
+        print("Pengadonan selesai.")
+        
+    def pengembangan(self):
+        print("=" * 50)
+        print(f"Pengembangan {self.nama}")
+        print("Melakukan pengembangan...")
+        print("Pengembangan selesai.")
+    
+    def pemanggangan(self):
+        print("=" * 50)
+        print(f"Pemanggangan {self.nama}")
+        print("Melakukan pemanggangan...")
+        print("Pemanggangan selesai.")

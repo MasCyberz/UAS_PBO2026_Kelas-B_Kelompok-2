@@ -1,8 +1,10 @@
 class Bahan:
-    def __init__(self, nama: str, jumlah: float, satuan: str):
+    def __init__(self, kode: str, nama: str, satuan: str, stok: float, harga: float):
+        self.kode = kode
         self.nama = nama
-        self.jumlah = jumlah
         self.satuan = satuan
+        self.stok = stok
+        self.harga = harga
 
     def __str__(self):
-        return f"{self.nama} ({self.jumlah} {self.satuan})"
+        return self.nama

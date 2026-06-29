@@ -101,7 +101,14 @@ class ProdukView:
     @staticmethod
     def input_produk():
 
+
         print("\nTambah Produk")
+        print("\nBerikut ini Jenis-Jenis Produknya: (tulis namanya)")
+        print("1. roti_manis")
+        print("2. croissant")
+        print("3. butter_cookie")
+        print("4. muffin")
+
 
         return {
             "jenis": InputView.input_string("Jenis Produk"),

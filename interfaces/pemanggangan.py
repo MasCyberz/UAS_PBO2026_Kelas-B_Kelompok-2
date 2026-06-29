@@ -6,4 +6,7 @@ class IPemanggangan(ABC):
     @abstractmethod
     def panggang_adonan(self, suhu_celcius: int, durasi_menit: int) -> None:
     #Metode untuk mensimulasikan proses pemanggangan produk.
+class Pemanggangan(ABC):
+    @abstractmethod
+    def pemanggangan(self):
         pass

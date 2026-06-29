@@ -1,12 +1,15 @@
-class BakeryProduct:
-    def __init__(self, nama, jumlah_produksi):
-        self.nama = nama
-        self.jumlah_produksi = jumlah_produksi
-        self.resep = {}
+from abc import ABC
 
-    def tampilkan_info(self):
-        print(f"\n=== {self.nama} ===")
-        print(f"Jumlah Produksi : {self.jumlah_produksi}")
-        print("\nBahan Baku : ")
-        for bahan, jumlah in self.resep.items():
-            print(f"- {bahan} : {jumlah}")
+class BakeryProduct(ABC):
+    def __init__(self, kode: str, nama: str, harga_jual: float, batch_size: int, resep):
+        self.kode = kode
+        self.nama = nama
+        self.harga_jual = harga_jual
+        self.batch_size = batch_size
+        self.resep = resep
+
+    def __str__(self):
+        return (
+            f"[{self.kode}] "
+            f"{self.nama}"
+        )

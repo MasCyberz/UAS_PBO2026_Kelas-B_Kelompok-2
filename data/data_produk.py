@@ -10,7 +10,7 @@ def data_awal_produk(recipes):
 
     products["RM001"] = RotiManis(
         kode="RM001",
-        nama="Roti Manis",
+        nama="Roti Manis Coklat",
         harga_jual=8000,
         batch_size=10,
         resep=recipes["RM001"]
@@ -28,13 +28,13 @@ def data_awal_produk(recipes):
         kode="BC001",
         nama="Butter Cookies",
         harga_jual=25000,
-        batch_size=20,
+        batch_size=40,
         resep=recipes["BC001"]
     )
 
     products["MF001"] = Muffin(
         kode="MF001",
-        nama="Muffin",
+        nama="Muffin Coklat",
         harga_jual=12000,
         batch_size=10,
         resep=recipes["MF001"]

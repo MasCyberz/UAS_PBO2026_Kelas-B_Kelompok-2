@@ -1,3 +1,4 @@
+from datetime import datetime
 from interfaces.pengadonan import Pengadonan
 from interfaces.pengembangan import Pengembangan
 from interfaces.pemanggangan import Pemanggangan
@@ -152,7 +153,7 @@ class ProductionService:
             produk.pemanggangan()
 
         if isinstance(produk, Toping):
-            produk.topping()
+            produk.toping()
             
     # PRODUKSI
 
@@ -195,6 +196,7 @@ class ProductionService:
         )
 
         hasil = {
+            "tanggal": datetime.now().strftime("%d-%m-%Y %H:%M:%S"),
             "kode_produk": produk.kode,
             "nama_produk": produk.nama,
             "jumlah_batch": jumlah_batch,

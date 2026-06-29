@@ -16,16 +16,18 @@ class ResepService:
     def get_resep_by_code(self, kode):
         return self.resep.get(kode)
     
+    
+    
     # Membuat resep baru
     def tambah_resep(self, resep):
         if resep.kode in self.resep:
             raise ValueError(f"Resep dengan kode {resep.kode} sudah ada.")
         
-        self.resep[resep.kode_produk] = resep
+        self.resep[resep.kode] = resep
 
     # Update resep
-    def update_resep(self, resep, kode_produk, bahan_baru):
-        resep = self.get_resep(kode_produk)
+    def update_resep(self, resep, kode, bahan_baru):
+        resep = self.get_resep_by_code(kode)
         
         if resep is None:
             raise ValueError("Resep tidak ditemukan.")
@@ -33,17 +35,17 @@ class ResepService:
         resep.daftar_bahan = bahan_baru
         
     # Hapus resep
-    def hapus_resep(self, kode_produk):
-        resep = self.get_resep(kode_produk)
+    def hapus_resep(self, kode):
+        resep = self.get_resep_by_code(kode)
         
         if resep is None:
             raise ValueError("Resep tidak ditemukan.")
         
-        del self.resep[kode_produk]
+        del self.resep[kode]
         
     # Tambah bahan ke resep
     def tambah_bahan(self, kode_produk, kode_bahan, jumlah):
-        resep = self.get_resep(kode_produk)
+        resep = self.get_resep_by_code(kode_produk)
         
         if resep is None:
             raise ValueError("Resep tidak ditemukan.")
@@ -59,7 +61,7 @@ class ResepService:
     
     # Update bahan di resep
     def update_bahan(self, kode_produk, kode_bahan, jumlah):
-        resep = self.get_resep(kode_produk)
+        resep = self.get_resep_by_code(kode_produk)
         
         if resep is None:
             raise ValueError("Resep tidak ditemukan.")
@@ -78,7 +80,7 @@ class ResepService:
         
     # Hapus bahan di resep
     def hapus_bahan(self, kode_produk, kode_bahan):
-        resep = self.get_resep(kode_produk)
+        resep = self.get_resep_by_code(kode_produk)
         
         if resep is None:
             raise ValueError("Resep tidak ditemukan.")
@@ -97,7 +99,7 @@ class ResepService:
         
     # Perhitungan harga resep
     def hitung_harga_resep(self, kode_produk):
-        resep = self.get_resep(kode_produk)
+        resep = self.get_resep_by_code(kode_produk)
         
         if resep is None:
             raise ValueError("Resep tidak ditemukan.")

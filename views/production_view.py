@@ -141,9 +141,6 @@ class ProductionView:
 
     @staticmethod
     def tampilkan_error(error):
-        print("\n")
         print("=" * 50)
-        print("ERROR PRODUKSI")
-        print("=" * 50)
-        print(error)
+        print(f"Gagal : {error}")
         print("=" * 50)

@@ -180,3 +180,56 @@ class ProfitService:
             "total_biaya": biaya,
             "total_laba": laba
         }
+    
+    def get_laporan_profit(self):
+        hasil = {}
+
+        riwayat = self.production_service.get_riwayat()
+
+        for item in riwayat:
+
+            kode = item["kode_produk"]
+
+            produk = self.produk_service.get_produk(
+                kode
+            )
+
+            if kode not in hasil:
+
+                hasil[kode] = {
+                    "kode_produk": kode,
+                    "nama_produk": produk.nama,
+                    "tanggal_terakhir": item["tanggal"],
+                    "jumlah_batch": 0,
+                    "jumlah_produk": 0,
+                    "harga_jual": produk.harga_jual,
+                    "biaya_produksi": 0,
+                    "omzet": 0,
+                    "laba": 0
+                }
+            hasil[kode]["tanggal_terakhir"] = item["tanggal"]
+
+            hasil[kode]["jumlah_batch"] += (
+                item["jumlah_batch"]
+            )
+
+            hasil[kode]["jumlah_produk"] += (
+                item["jumlah_produk"]
+            )
+
+            hasil[kode]["biaya_produksi"] += (
+                item["biaya_produksi"]
+            )
+
+            omzet = self.hitung_omzet(
+                kode,
+                item["jumlah_batch"]
+            )
+
+            hasil[kode]["omzet"] += omzet
+
+            hasil[kode]["laba"] += (
+                omzet - item["biaya_produksi"]
+            )
+
+        return list(hasil.values())

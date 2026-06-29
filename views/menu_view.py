@@ -3,6 +3,7 @@ from views.produk_view import ProdukView
 from views.production_view import ProductionView
 from views.bahan_view import BahanView
 from views.profit_view import ProfitView
+from views.resep_view import RecipeView
 
 class MenuView:
     def __init__(self, bakery):
@@ -12,12 +13,13 @@ class MenuView:
 
         print("\n")
         print("=" * 60)
-        print("\n=== SISTEM MANAJEMEN HANARI BAKERY ===")
+        print("=== SISTEM MANAJEMEN HANARI BAKERY ===")
         print("=" * 60)
         print("1. Produk")
-        print("2. Produksi")
-        print("3. Bahan")
-        print("4. Profit")
+        print("2. Resep")
+        print("3. Produksi")
+        print("4. Bahan")
+        print("5. Profit")
         print("0. Keluar")
         print("=" * 60)
 
@@ -30,14 +32,15 @@ class MenuView:
                 ProdukView.menu(self.bakery)
 
             elif pilihan == "2":
-                ProductionView.menu(self.bakery)
+                RecipeView.run(self.bakery)
 
             elif pilihan == "3":
-                BahanView.tampilkan_semua(
-                    self.bakery.bahan_service.get_bahan()
-                )
-
+                ProductionView.menu(self.bakery)
+                
             elif pilihan == "4":
+                BahanView.menu(self.bakery)
+
+            elif pilihan == "5":
                 ProfitView.menu(self.bakery)
 
             elif pilihan == "0":

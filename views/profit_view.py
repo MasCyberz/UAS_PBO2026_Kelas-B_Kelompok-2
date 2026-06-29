@@ -1,20 +1,68 @@
 class ProfitView:
     @staticmethod
     def menu(bakery):
-        try:
-            print("\n=== LAPORAN PROFIT ===")
+        while True:
+            try:
 
-            kode = input("Kode Produk : ")
-            batch = int(input("Jumlah Batch : "))
+                print("\n=== MENU PROFIT ===")
+                print("1. Laporan Profit Produk")
+                print("2. Ringkasan Keuangan")
+                print("0. Kembali")
 
-            laporan = bakery.profit_service.laporan_produk(kode, batch)
-            ringkasan = bakery.profit_service.ringkasan_keuangan()
+                pilih = input("Pilih menu : ")
 
-            ProfitView.tampilkan_laporan(laporan)
-            ProfitView.tampilkan_ringkasan(ringkasan)
+                if pilih == "1":
 
-        except Exception as e:
-            ProfitView.tampilkan_error(e)
+                    data = bakery.profit_service.get_laporan_profit()
+
+                    if not data:
+                        raise ValueError(
+                            "Belum ada data produksi."
+                        )
+
+                    print("\n=== DAFTAR PRODUK ===")
+
+                    for i, item in enumerate(data, start=1):
+                        print(
+                            f"{i}. "
+                            f"{item['kode_produk']} - "
+                            f"{item['nama_produk']} "
+                            f"({item['jumlah_batch']} Batch)"
+                        )
+
+                    nomor = int(input("\nPilih Produk : "))
+
+                    if nomor < 1 or nomor > len(data):
+                        raise ValueError(
+                            "Pilihan tidak valid."
+                        )
+
+                    laporan = data[nomor - 1]
+
+                    ProfitView.tampilkan_laporan(
+                        laporan
+                    )
+
+                elif pilih == "2":
+
+                    ringkasan = (
+                        bakery.profit_service
+                        .ringkasan_keuangan()
+                    )
+
+                    ProfitView.tampilkan_ringkasan(
+                        ringkasan
+                    )
+
+                elif pilih == "0":
+                    break
+
+                else:
+                    print("Menu tidak tersedia.")
+
+            except Exception as e:
+                ProfitView.tampilkan_error(e)
+                
     @staticmethod
     def tampilkan_laporan(data):
 
@@ -51,9 +99,6 @@ class ProfitView:
     @staticmethod
     def tampilkan_error(error):
 
-        print("\n")
-        print("=" * 60)
-        print("ERROR")
-        print("=" * 60)
-        print(error)
-        print("=" * 60)
+        print("=" * 50)
+        print(f"Gagal : {error}")
+        print("=" * 50)

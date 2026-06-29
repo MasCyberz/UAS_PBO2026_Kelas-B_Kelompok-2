@@ -32,7 +32,7 @@ class MenuView:
                 ProdukView.menu(self.bakery)
 
             elif pilihan == "2":
-                RecipeView.menu()
+                RecipeView.run(self.bakery)
 
             elif pilihan == "3":
                 ProductionView.menu(self.bakery)

@@ -1,4 +1,5 @@
 from views.input_view import InputView
+from models.resep import Resep
 
 
 class ProdukView:
@@ -133,10 +134,9 @@ class ProdukView:
 
                     nama_resep = InputView.input_string("Nama Resep")
 
-                    resep = bakery.resep_service.tambah_resep({
-                        "kode": kode_resep,
-                        "nama": nama_resep
-                    })
+                    resep = Resep(kode_resep, nama_resep, [])
+
+                    bakery.resep_service.tambah_resep(resep)
 
                     print("Resep berhasil dibuat.")
 
@@ -167,6 +167,44 @@ class ProdukView:
         }
 
     @staticmethod
+    def update_produk(bakery):
+
+        try:
+            data = ProdukView.input_update()
+
+            bakery.produk_service.update_produk(
+                data["kode"],
+                data["nama"],
+                data["harga_jual"],
+                data["batch_size"]
+            )
+
+            ProdukView.tampilkan_pesan("Produk berhasil diperbarui.")
+
+        except Exception as e:
+            ProdukView.tampilkan_error(e)
+
+    @staticmethod
+    def input_hapus():
+
+        print("\nHapus Produk")
+
+        return InputView.input_string("Kode Produk")
+
+    @staticmethod
+    def hapus_produk(bakery):
+
+        try:
+            kode = ProdukView.input_hapus()
+
+            bakery.produk_service.delete_produk(kode)
+
+            ProdukView.tampilkan_pesan("Produk berhasil dihapus.")
+
+        except Exception as e:
+            ProdukView.tampilkan_error(e)
+
+    @staticmethod
     def input_ganti_resep():
 
         print("\nGanti Resep Produk")
@@ -183,5 +221,5 @@ class ProdukView:
     @staticmethod
     def tampilkan_error(error):
         print("=" * 50)
-        print(f"\Gagal : {error}")
+        print(f"Gagal : {error}")
         print("=" * 50)

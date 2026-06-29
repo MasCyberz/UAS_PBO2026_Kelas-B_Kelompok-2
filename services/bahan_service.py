@@ -45,19 +45,19 @@ class BahanServices:
         return bahan
     
     # Hapus bahan
-def hapus_bahan(self, kode):
-    bahan = self.get_bahan_by_code(kode)
+    def hapus_bahan(self, kode):
+        bahan = self.get_bahan_by_code(kode)
 
-    if bahan is None:
-        raise ValueError(
-            f"Bahan dengan kode {kode} tidak ditemukan."
-        )
+        if bahan is None:
+            raise ValueError(
+                f"Bahan dengan kode {kode} tidak ditemukan."
+            )
 
-    for key, value in self.bahan.items():
-        if value.kode == kode:
-            del self.bahan[key]
-            return
-    
+        for key, value in self.bahan.items():
+            if value.kode == kode:
+                del self.bahan[key]
+                return
+
     # Stok bahan
     def tambah_stok(self, kode, jumlah):
         bahan = self.get_bahan_by_code(kode)

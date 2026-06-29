@@ -153,7 +153,7 @@ class ProductionService:
             produk.pemanggangan()
 
         if isinstance(produk, Toping):
-            produk.topping()
+            produk.toping()
             
     # PRODUKSI
 

@@ -150,7 +150,7 @@ def data_awal_bahan():
     
     # BAKING SODA
     daftar_bahan["baking_soda"] = Bahan(
-        "BHN022",
+        "BHN021",
         "Baking Soda",
         "gram",
         3000,
@@ -160,7 +160,7 @@ def data_awal_bahan():
     # BAHAN TAMBAHAN
     
     daftar_bahan["chocochips"] = Bahan(
-        "BHN023",
+        "BHN025",
         "Chocochips",
         "gram",
         10000,

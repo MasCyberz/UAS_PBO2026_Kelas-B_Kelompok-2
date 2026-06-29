@@ -1,7 +1,68 @@
 from views.input_view import InputView
+from models.resep import Resep
 
 
 class RecipeView:
+
+    # CONTROLLER / LOOP UTAMA
+
+    @staticmethod
+    def run(bakery):
+
+        while True:
+
+            pilihan = RecipeView.menu()
+
+            try:
+
+                if pilihan == "1":
+                    daftar = bakery.resep_service.get_all_resep()
+                    RecipeView.tampilkan_semua(daftar)
+
+                elif pilihan == "2":
+                    kode = RecipeView.input_kode_resep()
+                    resep = bakery.resep_service.get_resep_by_code(kode)
+                    RecipeView.tampilkan_detail(resep)
+
+                elif pilihan == "3":
+                    data = RecipeView.input_resep()
+                    resep_baru = Resep(data["kode"], data["nama"], [])
+                    bakery.resep_service.tambah_resep(resep_baru)
+                    RecipeView.tampilkan_pesan("Resep berhasil ditambahkan.")
+
+                elif pilihan == "4":
+                    kode_resep, kode_bahan, jumlah = RecipeView.input_bahan_resep()
+                    bakery.resep_service.tambah_bahan(kode_resep, kode_bahan, jumlah)
+                    RecipeView.tampilkan_pesan("Bahan berhasil ditambahkan ke resep.")
+
+                elif pilihan == "5":
+                    kode_resep, kode_bahan, jumlah = RecipeView.input_update_bahan()
+                    bakery.resep_service.update_bahan(kode_resep, kode_bahan, jumlah)
+                    RecipeView.tampilkan_pesan("Bahan pada resep berhasil diperbarui.")
+
+                elif pilihan == "6":
+                    kode_resep, kode_bahan = RecipeView.input_hapus_bahan()
+                    bakery.resep_service.hapus_bahan(kode_resep, kode_bahan)
+                    RecipeView.tampilkan_pesan("Bahan berhasil dihapus dari resep.")
+
+                elif pilihan == "7":
+                    kode = RecipeView.input_hitung_harga()
+                    total = bakery.resep_service.hitung_harga_resep(kode)
+                    RecipeView.tampilkan_harga(total)
+
+                elif pilihan == "8":
+                    kode = RecipeView.input_hapus_resep()
+                    bakery.resep_service.hapus_resep(kode)
+                    RecipeView.tampilkan_pesan("Resep berhasil dihapus.")
+
+                elif pilihan == "0":
+                    break
+
+                else:
+                    print("\nMenu tidak tersedia.")
+
+            except Exception as e:
+                RecipeView.tampilkan_error(e)
 
     # MENU
 

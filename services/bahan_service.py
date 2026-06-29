@@ -7,6 +7,7 @@ class BahanServices:
 
     # Mengembalikan daftar bahan
     def get_bahan(self):
+        
         return list(self.bahan.values())
     
     # Mengembalikan bahan berdasarkan nama
@@ -18,7 +19,8 @@ class BahanServices:
         for bahan in self.bahan.values():
             if bahan.kode == kode:
                 return bahan
-        return None
+        
+        raise ValueError(f"Bahan dengan kode {kode} tidak ditemukan.")
     
     # Menambahkan bahan baru
     def add_bahan(self, kode, nama, satuan, stok, harga):
@@ -31,17 +33,30 @@ class BahanServices:
     def update_bahan(self, kode, nama=None, satuan=None, harga=None):
         bahan = self.get_bahan_by_code(kode)
         
-        if bahan is None:
-            raise ValueError(f"Bahan dengan kode {kode} tidak ditemukan.")
-        
-        if nama is not None:
-            self.bahan[kode].nama = nama
-        
-        if satuan is not None:
-            self.bahan[kode].satuan = satuan
-        
-        if harga is not None:
-            self.bahan[kode].harga = harga
+        if nama:
+            bahan.nama = nama
+
+        if satuan:
+            bahan.satuan = satuan
+
+        if harga:
+            bahan.harga = harga
+            
+        return bahan
+    
+    # Hapus bahan
+def hapus_bahan(self, kode):
+    bahan = self.get_bahan_by_code(kode)
+
+    if bahan is None:
+        raise ValueError(
+            f"Bahan dengan kode {kode} tidak ditemukan."
+        )
+
+    for key, value in self.bahan.items():
+        if value.kode == kode:
+            del self.bahan[key]
+            return
     
     # Stok bahan
     def tambah_stok(self, kode, jumlah):
@@ -70,15 +85,3 @@ class BahanServices:
             return False
         
         return bahan.stok >= jumlah
-    
-    def lihat_bahan(self, kode):
-        print("=" * 60)
-        print("DAFTAR BAHAN")
-        print("=" * 60)
-        
-        bahan = self.get_bahan_by_code(kode)
-        print(f"Kode\t\t: {bahan.kode:20}")
-        print(f"Nama\t\t: {bahan.nama:20}")
-        print(f"Satuan\t\t: {bahan.satuan:20}")
-        print(f"Stok\t\t: {bahan.stok:20}")
-        print(f"Harga\t\t: {bahan.harga:20}")

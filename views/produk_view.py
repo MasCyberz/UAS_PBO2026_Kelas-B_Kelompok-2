@@ -182,4 +182,6 @@ class ProdukView:
 
     @staticmethod
     def tampilkan_error(error):
-        print(f"\nError : {error}")
+        print("=" * 50)
+        print(f"\Gagal : {error}")
+        print("=" * 50)

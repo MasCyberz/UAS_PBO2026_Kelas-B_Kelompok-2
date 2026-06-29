@@ -1,32 +1,59 @@
 class ProfitView:
     @staticmethod
-    def jalankan_kalkulator(daftar_produk):
-        print("\n--- KALKULATOR PROFIT ---")
-        if not daftar_produk:
-            print("Belum ada produk di sistem.")
-            return
-
-        for i, p in enumerate(daftar_produk):
-            print(f"{i+1}. {p.nama}")
-        
+    def menu(bakery):
         try:
-            idx = int(input("\nPilih nomor roti: ")) - 1
-            if 0 <= idx < len(daftar_produk):
-                target = int(input("Masukkan target produksi (pcs): "))
-                produk_terpilih = daftar_produk[idx]
-                
-                # Menghitung profit dari model
-                profit, biaya, dapat = produk_terpilih.hitung_profit(target)
-                bahan_digabung = ", ".join(produk_terpilih.bahan_baku)
-                
-                # Output sesuai format laporan
-                print(f"\nNama Projek  : {produk_terpilih.nama}")
-                print(f"Bahan baku   : {bahan_digabung}")
-                print(f"Jumlah pcs   : {target} pcs")
-                print(f"Pengeluaran  : Rp{biaya:,.0f}")
-                print(f"Pendapatan   : Rp{dapat:,.0f}")
-                print(f"Profit       : Rp{profit:,.0f}")
-            else:
-                print("Nomor roti tidak valid.")
-        except ValueError:
-            print("Input harus berupa angka!")
+            print("\n=== LAPORAN PROFIT ===")
+
+            kode = input("Kode Produk : ")
+            batch = int(input("Jumlah Batch : "))
+
+            laporan = bakery.profit_service.laporan_produk(kode, batch)
+            ringkasan = bakery.profit_service.ringkasan_keuangan()
+
+            ProfitView.tampilkan_laporan(laporan)
+            ProfitView.tampilkan_ringkasan(ringkasan)
+
+        except Exception as e:
+            ProfitView.tampilkan_error(e)
+    @staticmethod
+    def tampilkan_laporan(data):
+
+        print("\n")
+        print("=" * 70)
+        print("LAPORAN KEUNTUNGAN")
+        print("=" * 70)
+
+        print(f"Kode Produk      : {data['kode_produk']}")
+        print(f"Nama Produk      : {data['nama_produk']}")
+        print(f"Jumlah Batch     : {data['jumlah_batch']}")
+        print(f"Jumlah Produk    : {data['jumlah_produk']}")
+        print(f"Harga Jual       : Rp {data['harga_jual']:,.0f}")
+        print(f"Biaya Produksi   : Rp {data['biaya_produksi']:,.0f}")
+        print(f"Omzet            : Rp {data['omzet']:,.0f}")
+        print(f"Laba             : Rp {data['laba']:,.0f}")
+
+        print("=" * 70)
+
+    @staticmethod
+    def tampilkan_ringkasan(data):
+
+        print("\n")
+        print("=" * 70)
+        print("RINGKASAN KEUANGAN")
+        print("=" * 70)
+
+        print(f"Total Omzet          : Rp {data['total_omzet']:,.0f}")
+        print(f"Total Biaya Produksi : Rp {data['total_biaya']:,.0f}")
+        print(f"Total Laba           : Rp {data['total_laba']:,.0f}")
+
+        print("=" * 70)
+
+    @staticmethod
+    def tampilkan_error(error):
+
+        print("\n")
+        print("=" * 60)
+        print("ERROR")
+        print("=" * 60)
+        print(error)
+        print("=" * 60)

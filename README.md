@@ -1,26 +1,28 @@
-# Sistem Manajemen Koleksi Perpustakaan - Penerapan Prinsip SOLID
+# Sistem Manajemen Hanari Bakery - Penerapan OOP dan SOLID
 
-Repository ini berisi implementasi program **Sistem Manajemen Koleksi Perpustakaan** menggunakan bahasa Python dengan menerapkan prinsip-prinsip **SOLID** dalam pengembangan perangkat lunak berorientasi objek (Object-Oriented Programming).
-
-Program ini dikembangkan secara berkelompok dengan pembagian tugas berdasarkan komponen sistem serta sinkronisasi menggunakan GitHub.
-
----
+Repository ini berisi program CLI sederhana untuk mengelola produk bakery, resep, stok bahan, proses produksi, dan laporan keuntungan. Program dibuat menggunakan Python dengan pendekatan Object Oriented Programming.
 
 ## Deskripsi Proyek
 
-Sistem ini digunakan untuk mengelola berbagai jenis koleksi perpustakaan, yaitu:
+Sistem ini digunakan untuk membantu pencatatan operasional Hanari Bakery. Data awal yang tersedia meliputi bahan baku, resep, dan beberapa produk bakery.
 
-* Buku
-* Majalah
-* Jurnal
+Produk awal:
 
-Fitur yang tersedia:
+- Roti Manis
+- Croissant
+- Butter Cookies
+- Muffin
 
-* Menambahkan data koleksi
-* Menampilkan seluruh data koleksi
-* Menghapus data koleksi
-* Penyimpanan data menggunakan Repository Pattern
-* Pemisahan tanggung jawab berdasarkan prinsip SOLID
+Fitur utama:
+
+- Menampilkan daftar produk
+- Menambahkan produk baru
+- Mengupdate produk
+- Menghapus produk
+- Menampilkan daftar bahan
+- Menjalankan proses produksi berdasarkan batch
+- Mengurangi stok bahan setelah produksi
+- Menghitung biaya produksi, omzet, dan laba
 
 ---
 

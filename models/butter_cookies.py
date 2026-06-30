@@ -8,10 +8,19 @@ class ButterCookies(KueKering,
     Pemanggangan,
     Toping):
     def pengadonan(self):
+        print("=" * 50)
+        print(f"Pengadonan {self.nama}")
         print(f"{self.nama} sedang pengadonan")
+        print("Pengadonan selesai.")
         
     def pemanggangan(self):
+        print("=" * 50)
+        print(f"Pengadonan {self.nama}")
         print(f"{self.nama} sedang dipanggang.")
+        print("Pemanggangan selesai.")
         
     def toping(self):
-        print(f"{self.nama} diberi topping.")
+        print("=" * 50)
+        print(f"Pengadonan {self.nama}")
+        print(f"{self.nama} sedang diberi topping.")
+        print("Pemberian toping selesai.")

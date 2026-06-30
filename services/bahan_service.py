@@ -24,7 +24,8 @@ class BahanServices:
     
     # Menambahkan bahan baru
     def add_bahan(self, kode, nama, satuan, stok, harga):
-        if kode in self.bahan:
+        
+        if any(bahan.kode == kode for bahan in self.bahan.values()):
             raise ValueError(f"Bahan dengan kode {kode} sudah ada.")
         
         self.bahan[kode] = Bahan(kode, nama, satuan, stok, harga)
